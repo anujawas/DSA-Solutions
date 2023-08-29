@@ -8,35 +8,30 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
-	// Function to check if array has 2 elements
-	// whose sum is equal to the given value
-	bool doesExist(int arr[], int n, int target){
-	    if(n==1){
-	        return arr[0]==target;
-	    }
-	    int lo=0,hi=n-1;
-	    while(lo<=hi){
-	        int mid=(lo+hi)/2;
-	        if(arr[mid]==target){
-	            return true;
-	        }else if(arr[mid]>target){
-	            hi=mid-1;
-	        }else{
-	            lo=mid+1;
-	        }
-	    }
-	    return false;
-	}
+
 	bool hasArrayTwoCandidates(int arr[], int n, int x) {
-	    sort(arr,arr+n);
+	    int sol[100000]={0};
+	    
 	    for(int i=0;i<n;i++){
-	        if(x-arr[i]!=arr[i] and doesExist(arr,n,x-arr[i])){
-	            return true;
-	        }else if(x-arr[i]==arr[i] and i!=n-1){
-	            return arr[i]==arr[i+1];
+	        sol[arr[i]]++;
+	    }
+	    int ptr1=0, ptr2=x;
+	    while(ptr1<=ptr2){
+	        //cout<<ptr1<<" "<<ptr2<<" "<<sol[ptr1]<<" "<<sol[ptr2]<<endl;
+	        if(x-ptr1==ptr1 or x-ptr2==ptr2){
+	            if(sol[ptr1]>=2 or sol[ptr2]>=2){
+	                return true;
+	            }
 	        }
+	        else if(sol[ptr1] and sol[ptr2] and ptr1+ptr2==x){
+	            return true;
+	        }
+	        ptr1++;
+	        ptr2--;
 	    }
 	    return false;
+	    
+	    
 	}
 };
 
