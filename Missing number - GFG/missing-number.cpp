@@ -25,10 +25,12 @@ int main()
 
 int missingNumber(int A[], int N)
 {
-    int ans=(N*(N+1))/2;
+    int ans=0;
     int sum=0;
     for(int i=0;i<N-1;i++){
-        sum+=A[i];
+        sum=sum^A[i];
+        ans=ans^(i+1);
     }
-    return ans-sum;
+    ans=ans^N;
+    return ans^sum;
 }
