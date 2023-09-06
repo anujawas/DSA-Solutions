@@ -15,17 +15,26 @@ class Solution{
     // size: size of input array
     int majorityElement(int a[], int size)
     {
-        unordered_map<int,int> mp;
-        for(int i=0;i<size;i++){
-            mp[a[i]]++;
-        }
-        for(auto i=mp.begin();i!=mp.end();i++){
-            if(i->second>size/2){
-                return i->first;
-            }
-        }
         
-        return -1;
+       int cnt=0,ele;
+       for(int i=0;i<size;i++){
+           if(cnt==0){
+               cnt=1;
+               ele=a[i];
+           }else if(a[i]==ele){
+               cnt++;
+           }else{
+               cnt--;
+           }
+       }
+       int ans=0;
+       for(int i=0;i<size;i++){
+           if(a[i]==ele) ans++;
+       }
+       if(ans>size/2) return ele;
+       
+       return -1;
+        
     }
 };
 
