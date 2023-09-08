@@ -9,8 +9,34 @@ using namespace std;
 
 class Solution{
 public:
-    vector<int> nextPermutation(int N, vector<int> arr){
-        next_permutation(arr.begin(), arr.end());
+    void reverse(vector<int> &arr, int i, int j){
+        while(i<=j){
+            swap(arr[i],arr[j]);
+            i++;
+            j--;
+        }
+    }
+    vector<int> nextPermutation(int n, vector<int> arr){
+        
+        int ind=-1;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]<arr[i+1]){
+                ind=i;
+                break;
+            }
+        }
+        if(ind==-1){
+            reverse(arr,0,n-1);
+            return arr;
+        }
+        for(int i=n-1;i>ind;i--){
+            if(arr[i]>arr[ind]){
+                swap(arr[i],arr[ind]);
+                break;
+            }
+        }
+        reverse(arr,ind+1,n-1);
+        
         return arr;
         
     }
