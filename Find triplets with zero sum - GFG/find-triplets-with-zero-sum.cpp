@@ -14,20 +14,25 @@ class Solution{
     //Function to find triplets with zero sum.
     bool findTriplets(int arr[], int n)
     { 
-        unordered_map<int,int> mp;
+        sort(arr,arr+n);
         for(int i=0;i<n;i++){
-            mp[arr[i]]=i;
-        }
-        int ans=0;
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<n;j++){
-                int sum=0-(arr[i]+arr[j]);
-                if(mp.count(sum) and mp[sum]!=i and mp[sum]!=j){
-                    ans++;
+            if(i>0 and arr[i]==arr[i-1]) continue;
+            int j=i+1;
+            int k=n-1;
+            while(j<k){
+                int sum=arr[i]+arr[j]+arr[k];
+                if(sum>0){
+                    k--;
+                }else if(sum<0){
+                    j++;
+                }else{
+                    return true;
                 }
             }
+            
+            
         }
-        return ans;
+        return false;
        
     }
 };
