@@ -9,21 +9,19 @@ class Solution{
         //Function to merge the arrays.
         void merge(long long arr1[], long long arr2[], int n, int m) 
         { 
-            int arr[n+m]={0};
-            for(int i=0;i<n;i++){
-                arr[i]=arr1[i];
+            int left=n-1;
+            int right=0;
+            while(left>=0 and right<m){
+                if(arr1[left]>arr2[right]){
+                    swap(arr1[left], arr2[right]);
+                    left--;
+                    right++;
+                }else{
+                    break;
+                }
             }
-            for(int i=0;i<m;i++){
-                arr[n+i]=arr2[i];
-            }
-            sort(arr,arr+(n+m));
-            
-            for(int i=0;i<n;i++){
-                arr1[i]=arr[i];
-            }
-            for(int i=0;i<m;i++){
-                arr2[i]=arr[n+i];
-            }
+            sort(arr1,arr1+n);
+            sort(arr2,arr2+m);
         } 
 };
 
