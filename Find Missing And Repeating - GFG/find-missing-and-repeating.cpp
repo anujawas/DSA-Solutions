@@ -6,21 +6,17 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    vector<int> findTwoElement(vector<int> arr, int n) {
-        int ans[n+1]={0};
+    vector<long long int> findTwoElement(vector<int> arr, int n) {
+        long long int val1=0,val2=0;
         for(int i=0;i<n;i++){
-            ans[arr[i]]++;
+            val1+=((long long int)arr[i] - (i+1));
+            val2+=((long long)arr[i]* (long long)arr[i]  - (long long int)(i+1)*(i+1));
         }
+        val2=val2/val1;
         
-        int miss=0, repeat=0;
-        for(int i=1;i<=n;i++){
-            if(ans[i]==0){
-                miss=i;
-            }if(ans[i]==2){
-                repeat=i;
-            }
-        }
-        vector<int> sol={repeat,miss};
+        long long int x=(long long int)(val1+val2)/2;
+        long long int y=(long long int)(x-val1);
+        vector<long long int>sol= {x,y};
         return sol;
     }
 };
