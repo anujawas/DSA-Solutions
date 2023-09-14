@@ -11,7 +11,10 @@ public:
 	    for(int i=0;i<n;i++){
             int local=0;
 	        for(int j=0;j<m;j++){
-	            local+=arr[i][j];
+	            if(arr[i][j]==1){
+	                local=m-j;
+	                break;
+	            }
 	        }
 	        if(local>sum){
 	            sum=local;
