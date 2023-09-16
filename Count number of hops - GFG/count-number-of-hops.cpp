@@ -11,14 +11,20 @@ class Solution
     long long mod =1000000007;
     long long countWays(int n)
     {
-        long long arr[n+1]={0};
-        arr[1]=1;
-        arr[2]=2;
-        arr[3]=4;
+        long long first=1;
+        if(n==1) return first;
+        long long second=2;
+        if(n==2) return second;
+        long long third=4;
+        if(n==3) return third;
+        long long ans=0;
         for(int i=4;i<=n;i++){
-            arr[i]=(arr[i-1]+arr[i-2]+arr[i-3])%mod;
+            ans=(first+second+third)%mod;
+            first=second;
+            second=third;
+            third=ans;
         }
-        return arr[n];
+        return ans;
         
     }
 };
