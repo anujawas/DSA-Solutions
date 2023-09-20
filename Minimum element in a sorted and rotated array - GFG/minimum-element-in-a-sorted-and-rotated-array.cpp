@@ -9,6 +9,10 @@ public:
         int lo=0,hi=n-1, ans=INT_MAX;
         while(lo<=hi){
             int mid=(lo+hi)/2;
+            if(arr[lo]<=arr[hi]){
+                ans=min(ans,arr[lo]);
+                break;
+            }
             if(arr[mid]>=arr[lo]){
                 ans=min(ans,arr[lo]);
                 lo=mid+1;
