@@ -26,6 +26,9 @@ public:
                 lo=mid+1;
             }
         }
+        if(ans==INT_MAX){
+            return 0;
+        }
         
         lo=0,hi=n-1;
         int ans1=INT_MIN;
